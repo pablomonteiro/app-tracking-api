@@ -1,0 +1,14 @@
+{
+  "name": "app-tracking-api",
+  "description": "API to App Tracking",
+  "version": "0.1.0",
+  "author": "Pablo <pablomf84@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-load": "^1.1.16",
+    "pg-promise": "^8.5.5"
+  }
+}
