@@ -5,13 +5,15 @@ module.exports = function(app) {
                                  "          join application_keyword ak on (k.id = ak.id_keyword) " +
                                  "        join application a on (ak.id_application = a.id) " +
                                  " where upper(k.description) LIKE upper( $1 ) || '%'" +
-                                 " group by a.id, a.name ";
+                                 " group by a.id, a.name " + 
+                                 " order by a.name";
     
     var _QUERY_FIND_ALL = "select a.id, a.name " +
                                  "  from keyword k " +
                                  "          join application_keyword ak on (k.id = ak.id_keyword) " +
                                  "        join application a on (ak.id_application = a.id) " +
-                                 " group by a.id, a.name ";
+                                 " group by a.id, a.name " +
+                                 " order by a.name";
 
     var _QUERY_APPLICATION_BY_ID = " select * from application where id = $1 ";
 
@@ -19,7 +21,8 @@ module.exports = function(app) {
                                  "  from keyword k " +
                                  "          join application_keyword ak on (k.id = ak.id_keyword) " +
                                  " where ak.id_application = $1 " +
-                                 " group by k.id, k.description ";
+                                 " group by k.id, k.description " + 
+                                 " order by k.description";
 
     var _CONNECTION = function(app) {
         return app.connection.DBConnection.createSingleConnection();
