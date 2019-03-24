@@ -27,5 +27,13 @@ var findByKeyword = function(request, response) {
     });
 }
 
+var findApplicationById = function(request, response) {
+    var id = request.params.id;
+    createInstance().findOne({"_id": id}, function(err, result) {
+        response.send(result);
+    });
+}
+
 exports.findAll = findAll;
 exports.findByKeyword = findByKeyword;
+exports.findApplicationById = findApplicationById;

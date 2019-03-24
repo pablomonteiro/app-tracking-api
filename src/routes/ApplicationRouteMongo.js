@@ -10,4 +10,8 @@ module.exports = function(app) {
         applicationDAO.findByKeyword(request, response);
     });
 
+    app.get('/application/v1/findApplicationById/:id', function(request, response) {
+        applicationDAO.findApplicationById(request, response);
+    })
+
 }
