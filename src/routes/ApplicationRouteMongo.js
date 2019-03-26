@@ -12,6 +12,14 @@ module.exports = function(app) {
 
     app.get('/application/v1/findApplicationById/:id', function(request, response) {
         applicationDAO.findApplicationById(request, response);
-    })
+    });
+
+    app.put('/application/v1/removeKeyword/:id/:keyword', function(request, response) {
+        applicationDAO.removeKeywordByApplication(request, response);
+    });
+
+    app.put('/application/v1/addKeyword/:id/:keyword', function(request, response) {
+        applicationDAO.addKeywordByApplication(request, response);
+    });
 
 }
