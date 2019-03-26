@@ -63,6 +63,15 @@ var removeKeywordByApplication = function(request, response) {
     })
 }
 
+var deleteApplicationById = function(request, response) {
+    var id = request.params.id;
+    createInstance().deleteOne({"_id": id}, function(err) {
+        if (err) return handleError(err);
+        findAll(request, response);
+    });
+
+}
+
 var addKeywordByApplication = function(request, response) {
     
     var id = request.params.id;
@@ -79,6 +88,28 @@ var addKeywordByApplication = function(request, response) {
                 response.send(result);
             }
         );
+}
+
+var saveNewApplication = function(request, response) {
+    var name = request.body.name;
+    var keywords = request.body.keywords;
+
+    createInstance().findOne({"name": name}, function(err, result) {
+
+        if(result) {
+            response.status(409);
+            response.send(result);
+        } else {
+            createInstance().create({
+                    "name": name,
+                    "keywords": keywords
+                }, 
+                (err, result) => {
+                    response.send(result);
+                }
+            );
+        }
+    });
 
 }
 
@@ -87,3 +118,5 @@ exports.findByKeyword = findByKeyword;
 exports.findApplicationById = findApplicationById;
 exports.removeKeywordByApplication = removeKeywordByApplication;
 exports.addKeywordByApplication = addKeywordByApplication;
+exports.saveNewApplication = saveNewApplication;
+exports.deleteApplicationById = deleteApplicationById;

@@ -22,4 +22,12 @@ module.exports = function(app) {
         applicationDAO.addKeywordByApplication(request, response);
     });
 
+    app.post('/application/v1/newApplication', function(request, response) {
+        applicationDAO.saveNewApplication(request, response);
+    });
+
+    app.delete('/application/v1/deleteApplicationById/:id', function(request, response) {
+        applicationDAO.deleteApplicationById(request, response);
+    });
+
 }
